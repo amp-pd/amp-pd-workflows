@@ -1,0 +1,20 @@
+{
+  "##_COMMENT1": "Set your per-sample values: name and BAM path",
+  "RNASummarization.sample_name": "__INSERT_SAMPLE_NAME__",
+  "RNASummarization.bam_file": "__INSERT_GCS_PATH_TO_BAM_FILE__",
+
+  "##_COMMENT2": "Path to the reference GTF file",
+  "RNASummarization.gene_map": "gs://amp-pd-transcriptomics/inputs/reference/gtf/gencode.v29.primary_assembly.annotation.gtf",
+
+  "##_COMMENT3": "Path to a Docker image containing subread",
+  "RNASummarization.featureCounts_docker": "quay.io/biocontainers/subread:1.6.3--h84994c4_1",
+
+  "##_COMMENT4": "For large BAMs, you might need to allocate more resources",
+  "RNASummarization.num_cpu_cores": 2,
+  "RNASummarization.featureCounts_vm_memory": "7.5GB",
+  "RNASummarization.featureCounts_vm_disk_size_gb": 1000,
+
+  "##_COMMENT5": "Would be unusual to take more than 24 hours, so use preemptible",
+  "RNASummarization.num_preemptible_retries": 5,
+  "RNASummarization.runtime_zones": "us-central1-a, us-central1-b"
+}
