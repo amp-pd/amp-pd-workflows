@@ -1,0 +1,20 @@
+{
+  "##_COMMENT1": "Set your per-sample values: name and fastq files",
+  "RNAQuantification.sample_name": "__INSERT_SAMPLE_NAME__",
+  "RNAQuantification.fastq_1": [ "__INSERT_GCS_PATHS_TO_FASTQ1__" ],
+  "RNAQuantification.fastq_2": [ "__INSERT_GCS_PATHS_TO_FASTQ2__" ],
+
+  "##_COMMENT2": "Path to the reference GTF file and salmon index file",
+  "RNAQuantification.gene_map": "gs://amp-pd-transcriptomics/inputs/reference/gencode/gencode.v29.primary_assembly.annotation.gtf.gz",
+  "RNAQuantification.salmon_index": "gs://amp-pd-transcriptomics/inputs/reference/salmon/Homo_sapiens.gencode.v29.all.salmon0.11.3_gencodeOption.index.tar.gz",
+
+  "##_COMMENT3": "Path to a Docker image containing salmon",
+  "RNAQuantification.salmon_docker": "combinelab/salmon:0.11.3",
+  
+  "RNAQuantification.runtime_zones": "us-central1-a us-central1-b",
+  "RNAQuantification.salmon_vm_memory": "28.0GB", 
+  "RNAQuantification.salmon_vm_disk_size_gb": 300,
+  
+  "##_COMMENT4": "Would be unusual to take more than 24 hours, so use preemptible",
+  "RNAQuantification.preemptible_tries": 5
+}
