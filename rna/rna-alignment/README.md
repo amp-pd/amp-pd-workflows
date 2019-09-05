@@ -16,7 +16,7 @@ Inputs:
   - docker image url
   - VM disk size
   - VM memory
-  - Runtime zones, ex: "us-central1-c us-central1-b"
+  - Runtime zones, ex: "us-central1-a us-central1-b"
   - Number of times to try the workflow with a preemptible VM before
     falling back to a full-price VM.
 
