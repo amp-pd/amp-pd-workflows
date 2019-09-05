@@ -93,8 +93,11 @@ task salmon_quant {
     set -o nounset
     set -o pipefail
     
+    # Extract salmon index files to its own directory.
     mkdir salmon_index
     tar xfz "${salmon_index}" --directory salmon_index
+
+    # Unzip the gene map.
     gunzip "${gene_map}"
     UNZIPPED_GENE_MAP="$(echo ${gene_map} | sed -e "s/.gz$//")"
 
