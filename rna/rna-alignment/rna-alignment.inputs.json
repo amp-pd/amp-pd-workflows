@@ -1,0 +1,20 @@
+{
+  "##_COMMENT1": "Set your per-sample values: name and fastq files",
+  "RNAAlignment.sample_name": "__INSERT_SAMPLE_NAME__",
+  "RNAAlignment.fastq_1": [ "__INSERT_GCS_PATHS_TO_FASTQ1__" ],
+  "RNAAlignment.fastq_2": [ "__INSERT_GCS_PATHS_TO_FASTQ2__" ],
+
+  "##_COMMENT2": "Path to the STAR index directory tar file",
+  "RNAAlignment.star_index": "gs://amp-pd-transcriptomics/inputs/reference/star/STAR_genome_GencodeV29_oh125.tar.gz",
+
+  "##_COMMENT3": "Path to a Docker image containing star",
+  "RNAAlignment.star_docker": "alexdobin/star:2.6.1d",
+
+  "RNAAlignment.runtime_zones": "us-central1-a us-central1-b",
+  "RNAAlignment.star_vm_memory": "80.0GB",
+  "RNAAlignment.star_vm_disk_size_gb": 200,
+
+  "##_COMMENT4": "STAR does not *typically* take more than 24 hours, so use preemptible",
+  "RNAAlignment.preemptible_tries": 3,
+  "RNAAlignment.star_timeout_hours": 23.5
+}
