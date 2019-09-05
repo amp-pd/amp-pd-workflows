@@ -99,7 +99,7 @@ task salmon_quant {
 
     # Unzip the gene map.
     gunzip "${gene_map}"
-    UNZIPPED_GENE_MAP="$(echo ${gene_map} | sed -e "s/.gz$//")"
+    UNZIPPED_GENE_MAP="$(echo ${gene_map} | sed -e 's/.gz$//')"
 
     salmon quant \
       --no-version-check \

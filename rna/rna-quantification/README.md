@@ -17,7 +17,7 @@ Inputs:
   - Docker image url
   - VM disk size
   - VM memory
-  - Runtime zones, ex: "us-central1-c us-central1-b"
+  - Runtime zones, ex: "us-central1-a us-central1-b"
   - Number of times to try the workflow with a preemptible VM before
     falling back to a full-price VM.
 
@@ -31,7 +31,7 @@ Outputs:
   - Auxilliary files
 
 ## Notes
-A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra.](https://app.terra.bio/)
+A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra](https://app.terra.bio/).
 
 The gene map (GTF) file used was [GENCODE](https://www.gencodegenes.org/) v29.
 
