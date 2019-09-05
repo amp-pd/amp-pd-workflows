@@ -76,10 +76,15 @@ task subread_featureCounts {
     set -o nounset
     set -o pipefail
 
+    # Set the output file name
     OUTPUT="$(pwd)/${sample_name}.featureCounts.tsv"
+
+    # Unzip the gene map
     gunzip "${gene_map}"
     UNZIPPED_GENE_MAP="$(echo ${gene_map} | sed -e "s/.gz$//")"
 
+    # Run featureCounts in the directory with the BAM; 
+    # otherwise the output file records the full path in the header
     cd $(dirname "${bam_file}")
 
     featureCounts \

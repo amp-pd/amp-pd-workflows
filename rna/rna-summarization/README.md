@@ -24,3 +24,10 @@ Outputs:
 - Per-sample
   - &lt;sample_name&gt;.featureCounts.tsv
   - &lt;sample_name&gt;.featureCounts.tsv.summary
+
+## Notes
+A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra.](https://app.terra.bio/)
+
+The gene map (GTF) file used was [GENCODE](https://www.gencodegenes.org/) v29.
+
+The `subread` Docker image used was from [BioContainers](https://biocontainers.pro).
