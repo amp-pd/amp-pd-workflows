@@ -1,0 +1,110 @@
+## rna-summarization.wdl
+##
+## This workflow runs the subread featureCounts command on a BAM file
+## (http://subread.sourceforge.net/).
+##
+## Inputs:
+## - Per-sample:
+##   - Sample Name
+##   - BAM file
+##
+## - Reference:
+##   - Gene map (GTF) file
+##
+## - VM configuration
+##   - Docker image url
+##   - VM disk size
+##   - VM memory
+##   - Num CPU cores
+##   - Runtime zones, ex: "us-central1-c us-central1-b"
+##   - Number of times to try the workflow with a preemptible VM before
+##     falling back to a full-price VM.
+##
+## Outputs:
+## - Per-sample
+##   - <sample_name>.featureCounts.tsv
+##   - <sample_name>.featureCounts.tsv.summary
+
+workflow RNASummarization {
+  File bam_file
+  String sample_name
+
+  File gene_map
+
+  String featureCounts_docker
+  Int featureCounts_vm_disk_size_gb
+  String featureCounts_vm_memory
+  Int num_cpu_cores
+  String runtime_zones
+  Int num_preemptible_retries
+
+  call subread_featureCounts {
+    input:
+      bam_file = bam_file,
+      sample_name = sample_name,
+
+      gene_map = gene_map,
+
+      featureCounts_docker = featureCounts_docker,
+      featureCounts_vm_disk_size_gb = featureCounts_vm_disk_size_gb,
+      num_cpu_cores = num_cpu_cores,
+      runtime_zones = runtime_zones,
+      num_preemptible_retries = num_preemptible_retries,
+      featureCounts_vm_memory = featureCounts_vm_memory
+   }
+
+  output {
+    Array[File] outputFiles = subread_featureCounts.outputFiles
+  }
+}
+
+task subread_featureCounts {
+  File bam_file
+  String sample_name
+
+  File gene_map
+
+  String featureCounts_docker
+  Int featureCounts_vm_disk_size_gb
+  Int num_cpu_cores
+  String runtime_zones
+  Int num_preemptible_retries
+  String featureCounts_vm_memory
+
+  command {
+    set -o errexit
+    set -o nounset
+    set -o pipefail
+
+    OUTPUT="$(pwd)/${sample_name}.featureCounts.tsv"
+    gunzip "${gene_map}"
+    UNZIPPED_GENE_MAP="$(echo ${gene_map} | sed -e "s/.gz$//")"
+
+    cd $(dirname "${bam_file}")
+
+    featureCounts \
+      -T 2 \
+      -p \
+      -t exon \
+      -g gene_id \
+      -a "$UNZIPPED_GENE_MAP" \
+      -s 2 \
+      -o "$OUTPUT" \
+      "$(basename "${bam_file}")"
+  }
+  runtime {
+    docker: featureCounts_docker
+
+    disks: "local-disk " + featureCounts_vm_disk_size_gb + " HDD"
+    zones: runtime_zones
+    preemptible: num_preemptible_retries
+    memory: featureCounts_vm_memory
+    cpu: num_cpu_cores
+  }
+  output {
+    # Two outputs produced:
+    # - <sample_name}.featureCounts.tsv
+    # - <sample_name>.featureCounts.tsv.summary
+    Array[File] outputFiles = glob("*")
+  }
+}
