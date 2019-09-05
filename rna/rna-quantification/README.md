@@ -1,4 +1,4 @@
-# RNASummarization with subread featureCounts
+# RNAQuantification with salmon quant
 
 This workflow runs the salmon command on a pair of FASTQ files
 (https://combine-lab.github.io/salmon/).
