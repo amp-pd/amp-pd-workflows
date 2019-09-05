@@ -1,0 +1,16 @@
+{
+  "RNAAlignment.star_index": "gs://{}/inputs/reference/star/STAR_genome_GencodeV29_oh125.tar.gz",
+  "RNAAlignment.star_vm_disk_size_gb": "${200}",
+  "RNAAlignment.chim_out_type": "Junctions",
+  "RNAAlignment.fastq_1": "${this.fastq1}",
+  "RNAAlignment.preemptible_tries": "${0}",
+  "RNAAlignment.monitor": "gs://{}/inputs/code/star/monitor.sh",
+  "RNAAlignment.fastq_2": "${this.fastq2}",
+  "RNAAlignment.sample_name": "${this.sample_id}",
+  "RNAAlignment.star_timeout_hours": "${240}",
+  "RNAAlignment.star_docker": "alexdobin/star:2.6.1d",
+  "RNAAlignment.disk_monitor": "gs://{}/inputs/code/star/disk_monitor.sh",
+  "RNAAlignment.star_vm_memory": "80.0GB",
+  "RNAAlignment.runtime_zones": "us-central1-b",
+  "RNAAlignment.monitor_timeout_hours": "${240}"
+}
