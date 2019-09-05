@@ -81,7 +81,7 @@ task subread_featureCounts {
 
     # Unzip the gene map
     gunzip "${gene_map}"
-    UNZIPPED_GENE_MAP="$(echo ${gene_map} | sed -e "s/.gz$//")"
+    UNZIPPED_GENE_MAP="$(echo ${gene_map} | sed -e 's/.gz$//')"
 
     # Run featureCounts in the directory with the BAM; 
     # otherwise the output file records the full path in the header

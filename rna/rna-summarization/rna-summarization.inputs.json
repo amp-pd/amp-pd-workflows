@@ -16,5 +16,5 @@
 
   "##_COMMENT5": "Would be unusual to take more than 24 hours, so use preemptible",
   "RNASummarization.num_preemptible_retries": 5,
-  "RNASummarization.runtime_zones": "us-central1-a, us-central1-b"
+  "RNASummarization.runtime_zones": "us-central1-a us-central1-b"
 }
