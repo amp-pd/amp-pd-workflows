@@ -1,6 +1,6 @@
 # RNAQuantification with salmon quant
 
-This workflow runs the salmon command on a pair of FASTQ files
+This workflow runs the `salmon quant` command on a list of paired FASTQ files
 (https://combine-lab.github.io/salmon/).
 
 Inputs:

@@ -1,8 +1,8 @@
 {
   "##_COMMENT1": "Set your per-sample values: name and fastq files",
-  "RNAQuantification.sample_name": "${this.sample_id}",
-  "RNAQuantification.fastq_1": "${this.fastq2}",
-  "RNAQuantification.fastq_2": "${this.fastq1}",
+  "RNAQuantification.sample_name": "__INSERT_SAMPLE_NAME__",
+  "RNAQuantification.fastq_1": [ "__INSERT_GCS_PATHS_TO_FASTQ1__" ],
+  "RNAQuantification.fastq_2": [ "__INSERT_GCS_PATHS_TO_FASTQ2__" ],
 
   "##_COMMENT2": "Path to the reference GTF file and salmon index file",
   "RNAQuantification.gene_map": "gs://amp-pd-transcriptomics/inputs/reference/gencode/gencode.v29.primary_assembly.annotation.gtf.gz",
