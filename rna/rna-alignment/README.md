@@ -36,7 +36,13 @@ Outputs:
       - SJ.out.tab
 
 ## Notes
-A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra](https://app.terra.bio/). By default, the workflow will run on preemptible machines, but won't let the task run over 24 hours. To disable preemptible machines for large samples, set `RNAAlignment.preemptible_tries` to 0 and `RNAAlignment.star_timeout_hours` to a very large value.
+A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra](https://app.terra.bio/).
+
+By default, the workflow will run on preemptible machines, but won't let the task run over 24 hours, which could result in a preemption-rerun loop for samples that will never complete on a preemptible VM. See [broadinstitute/cromwell#4600](https://github.com/broadinstitute/cromwell/issues/4600).
+
+To disable preemptible machines for large samples, set `RNAAlignment.preemptible_tries` to 0 and `RNAAlignment.star_timeout_hours` to a very large value.
+
+The timeout is applied to the execution of STAR specifically. The default value of 23.5 hours provides a half hour of buffer for localization, extracting the STAR index, and de-localization.
 
 The STAR index is packaged as a gzipped TAR file as WDL draft-2 does not support the WDL `Directory` type.
 The STAR index was created with the following steps:
