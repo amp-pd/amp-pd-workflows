@@ -49,6 +49,7 @@ workflow RNAAlignment {
   String star_vm_memory
   String runtime_zones
   Int preemptible_tries
+  Float star_timeout_hours
 
   call star_align {
     input:
@@ -61,6 +62,7 @@ workflow RNAAlignment {
       star_docker = star_docker,
       runtime_zones = runtime_zones,
       preemptible_tries = preemptible_tries,
+      star_timeout_hours = star_timeout_hours,
    }
 
   output {
@@ -82,6 +84,7 @@ task star_align {
   String star_docker
   String runtime_zones
   Int preemptible_tries
+  Float star_timeout_hours
 
   command<<<
     set -o errexit
@@ -126,9 +129,12 @@ task star_align {
     mkdir star_index
     tar xfz "${star_index}" --directory star_index --strip-components=1
 
-    # Run STAR --runMode alignReads
     mkdir output_dir
-    STAR \
+
+    # Run STAR --runMode alignReads
+    # We run using timeout to prevent long-running workflows
+    # from wasteful preemption loops.
+    timeout "${star_timeout_hours}"h STAR \
       --genomeDir star_index \
       --runMode alignReads \
       --twopassMode Basic \
