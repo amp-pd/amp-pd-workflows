@@ -36,7 +36,7 @@ Outputs:
       - SJ.out.tab
 
 ## Notes
-A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra](https://app.terra.bio/).
+A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra](https://app.terra.bio/). By default, the workflow will run on preemptible machines, but won't let the task run over 24 hours. To disable preemptible machines for large samples, set `RNAAlignment.preemptible_tries` to 0 and `RNAAlignment.star_timeout_hours` to a very large value.
 
 The STAR index is packaged as a gzipped TAR file as WDL draft-2 does not support the WDL `Directory` type.
 The STAR index was created with the following steps:
