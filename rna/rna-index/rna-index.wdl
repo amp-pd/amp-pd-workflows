@@ -34,7 +34,7 @@ workflow RNAIndex {
   String runtime_zones
   Int num_cpu_cores
   Int preemptible_tries
-  
+
   call samtools_index {
     input:
       sample_name=sample_name,
@@ -66,28 +66,28 @@ task samtools_index {
   String runtime_zones
   Int num_cpu_cores
   Int preemptible_tries
-  
+
   command<<<
     set -o errexit
     set -o nounset
     set -o pipefail
-    
+
     echo "$(date "+%Y-%m-%d %H:%M:%S") Creating soft link to old bam"
     ln -s "${star_bam_file}" old_bam_file.bam
-    
+
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools sort"
     samtools sort -o "${sample_name}.samtools.bam" "${star_bam_file}"
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools index on new bam"
     samtools index -b "${sample_name}.samtools.bam"
-    
+
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools idxstats on new bam"
     samtools idxstats "${sample_name}.samtools.bam" > idxstats.new.txt
-    
+
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools flagstat on old bam"
     samtools flagstat old_bam_file.bam > flagstat.old.txt
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools flagstat on new bam"
     samtools flagstat "${sample_name}.samtools.bam" > flagstat.new.txt
-    
+
     if ! diff flagstat.old.txt flagstat.new.txt; then
       1>&2 echo "BAM flagstats differ!"
       exit 1
@@ -115,3 +115,4 @@ task samtools_index {
     File samtools_flagstat_output_path = "${sample_name}.flagstat.txt"
   }
 }
+
