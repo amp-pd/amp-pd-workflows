@@ -1,7 +1,11 @@
 # RNAAlignment with STAR
 
 This workflow runs the STAR command on a pair of fastq files.
-(https://github.com/alexdobin/STAR).
+(https://github.com/alexdobin/STAR) and produces an aligned, unsorted BAM
+with STAR's default compression level (1).
+
+This output BAM for this workflow can be sorted, compressed, and indexed
+with the `RNABAMSortAndIndex` workflow.
 
 Inputs:
 - Per-sample:
@@ -22,7 +26,7 @@ Inputs:
 
 Outputs:
 - Per-sample
-  - &lt;sample-id&gt;.Aligned.sortedByCoord.out.bam
+  - &lt;sample-id&gt;.Aligned.out.bam
   - &lt;sample-id&gt;.SJ.out.tab
   - &lt;sample-id&gt;.Chimeric.out.junction
   - &lt;sample-id&gt;.Log.final.out

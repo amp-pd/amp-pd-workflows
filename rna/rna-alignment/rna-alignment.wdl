@@ -22,7 +22,7 @@
 ##
 ## Outputs:
 ## - Per-sample
-##   - <sample-id>.Aligned.sortedByCoord.out.bam
+##   - <sample-id>.Aligned.out.bam
 ##   - <sample-id>.SJ.out.tab
 ##   - <sample-id>.Chimeric.out.junction
 ##   - <sample-id>.Log.final.out
@@ -93,7 +93,8 @@ task star_align {
     set -o xtrace
 
     # For each FASTQ1 file, extract fields to build up a list
-    # of readgroup tags.
+    # of readgroup tags. The readgroup tag takes the form:
+    # <FLOWCELL>.<INDEX>.<LANE>
     RGTAGLIST=""
     for FILE in ${sep=" " fastq_1}; do
       SAMPLE_NAME="$(basename $FILE | cut -d. -f1)"
@@ -171,7 +172,7 @@ task star_align {
   }
   output {
     # 6 outputs produced:
-    #   - <sample-id>.Aligned.sortedByCoord.out.bam
+    #   - <sample-id>.Aligned.out.bam
     #   - <sample-id>.SJ.out.tab
     #   - <sample-id>.Chimeric.out.junction
     #   - <sample-id>.Log.final.out
