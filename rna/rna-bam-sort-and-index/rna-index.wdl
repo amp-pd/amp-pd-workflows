@@ -1,6 +1,6 @@
 ## rna-index.wdl
 ##
-## This workflow runs samtools sort and samtools index on the STAR bam file
+## This workflow runs samtools sort and samtools index on a bam file
 ## (http://samtools.sourceforge.net/).
 ##
 ## Inputs:
@@ -26,7 +26,7 @@
 
 workflow RNAIndex {
   String sample_name
-  File star_bam_file
+  File input_bam_file
 
   String samtools_docker
   Int vm_disk_size_gb
@@ -38,7 +38,7 @@ workflow RNAIndex {
   call samtools_index {
     input:
       sample_name=sample_name,
-      star_bam_file=star_bam_file,
+      input_bam_file=input_bam_file,
       samtools_docker=samtools_docker,
       vm_disk_size_gb=vm_disk_size_gb,
       vm_memory=vm_memory,
@@ -58,7 +58,7 @@ workflow RNAIndex {
 task samtools_index {
 
   String sample_name
-  File star_bam_file
+  File input_bam_file
 
   String samtools_docker
   Int vm_disk_size_gb
@@ -73,10 +73,10 @@ task samtools_index {
     set -o pipefail
 
     echo "$(date "+%Y-%m-%d %H:%M:%S") Creating soft link to old bam"
-    ln -s "${star_bam_file}" old_bam_file.bam
+    ln -s "${input_bam_file}" old_bam_file.bam
 
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools sort"
-    samtools sort -o "${sample_name}.samtools.bam" "${star_bam_file}"
+    samtools sort -o "${sample_name}.samtools.bam" "${input_bam_file}"
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools index on new bam"
     samtools index -b "${sample_name}.samtools.bam"
 
@@ -88,6 +88,7 @@ task samtools_index {
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools flagstat on new bam"
     samtools flagstat "${sample_name}.samtools.bam" > flagstat.new.txt
 
+    # Verifying the old and new BAMs produce the same flagstats
     if ! diff flagstat.old.txt flagstat.new.txt; then
       1>&2 echo "BAM flagstats differ!"
       exit 1
