@@ -38,9 +38,14 @@ Outputs:
 ## Notes
 A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra](https://app.terra.bio/).
 
-By default, the workflow will run on preemptible machines, but won't let the task run over 24 hours, which could result in a preemption-rerun loop for samples that will never complete on a preemptible VM. See [broadinstitute/cromwell#4600](https://github.com/broadinstitute/cromwell/issues/4600).
+By default, the workflow will run on preemptible machines, but will hard-terminate the STAR command at 23.5
+hours. This is to avoid getting preempted at 24 hours and then re-running on a preemptible VM, which again
+won't succeed. After hard termination, the long-running sample can be restarted explicitly on a non-preemptible VM.
 
 To disable preemptible machines for large samples, set `RNAAlignment.preemptible_tries` to 0 and `RNAAlignment.star_timeout_hours` to a very large value.
+
+See [broadinstitute/cromwell#4600](https://github.com/broadinstitute/cromwell/issues/4600)
+for a description of the problem and a request for a feature to address this in Cromwell.
 
 The timeout is applied to the execution of STAR specifically. The default value of 23.5 hours provides a half hour of buffer for localization, extracting the STAR index, and de-localization.
 
