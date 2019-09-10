@@ -52,7 +52,7 @@ The timeout is applied to the execution of STAR specifically. The default value 
 The STAR index is packaged as a gzipped TAR file as WDL draft-2 does not support the WDL `Directory` type.
 The STAR index was created with the following steps:
 
-1- Download the GENCODE v29 FASTA and file from:
+1- Download the GENCODE v29 FASTA and gtf file from:
 
  ```
 ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/GRCh38.primary_assembly.genome.fa.gz
