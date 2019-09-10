@@ -42,7 +42,7 @@ By default, the workflow will run on preemptible machines, but will hard-termina
 hours. This is to avoid getting preempted at 24 hours and then re-running on a preemptible VM, which again
 won't succeed. After hard termination, the long-running sample can be restarted explicitly on a non-preemptible VM.
 
-To disable preemptible machines for large samples, set `RNAAlignment.preemptible_tries` to 0 and `RNAAlignment.star_timeout_hours` to a very large value.
+To disable preemptible machines for long running samples, set `RNAAlignment.preemptible_tries` to 0 and `RNAAlignment.star_timeout_hours` to a very large value.
 
 See [broadinstitute/cromwell#4600](https://github.com/broadinstitute/cromwell/issues/4600)
 for a description of the problem and a request for a feature to address this in Cromwell.
