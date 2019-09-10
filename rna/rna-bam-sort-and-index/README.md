@@ -1,6 +1,6 @@
 # RNABAMSortAndIndex with Samtools
 
-This workflow runs samtools sort and samtools index on a bam file.
+This workflow runs samtools sort and samtools index on a BAM file.
 (http://samtools.sourceforge.net/).
 
 Inputs:

@@ -1,6 +1,6 @@
-## rna-index.wdl
+## rna-bam-sort-and-index.wdl
 ##
-## This workflow runs samtools sort and samtools index on a bam file
+## This workflow runs samtools sort and samtools index on a BAM file
 ## (http://samtools.sourceforge.net/).
 ##
 ## Inputs:
@@ -24,7 +24,7 @@
 ##   - <sample_name>.idxstats.txt
 ##   - <sample_name>.flagstat.txt
 
-workflow RNAIndex {
+workflow RNABAMSortAndIndex {
   String sample_name
   File input_bam_file
 
@@ -35,7 +35,7 @@ workflow RNAIndex {
   Int num_cpu_cores
   Int preemptible_tries
 
-  call samtools_index {
+  call samtools_sort_and_index {
     input:
       sample_name=sample_name,
       input_bam_file=input_bam_file,
@@ -48,14 +48,14 @@ workflow RNAIndex {
    }
 
   output {
-    File samtools_bam_output_path = samtools_index.samtools_bam_output_path
-    File samtools_bai_output_path = samtools_index.samtools_bai_output_path
-    File samtools_idxstats_output_path = samtools_index.samtools_idxstats_output_path
-    File samtools_flagstat_output_path = samtools_index.samtools_flagstat_output_path
+    File samtools_bam_output_path = samtools_sort_and_index.samtools_bam_output_path
+    File samtools_bai_output_path = samtools_sort_and_index.samtools_bai_output_path
+    File samtools_idxstats_output_path = samtools_sort_and_index.samtools_idxstats_output_path
+    File samtools_flagstat_output_path = samtools_sort_and_index.samtools_flagstat_output_path
   }
 }
 
-task samtools_index {
+task samtools_sort_and_index {
 
   String sample_name
   File input_bam_file
@@ -72,23 +72,23 @@ task samtools_index {
     set -o nounset
     set -o pipefail
 
-    echo "$(date "+%Y-%m-%d %H:%M:%S") Creating soft link to old bam"
+    echo "$(date "+%Y-%m-%d %H:%M:%S") Creating soft link to old BAM"
     ln -s "${input_bam_file}" old_bam_file.bam
 
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools sort"
     samtools sort -o "${sample_name}.samtools.bam" "${input_bam_file}"
-    echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools index on new bam"
+    echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools index on new BAM"
     samtools index -b "${sample_name}.samtools.bam"
 
-    echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools idxstats on new bam"
+    echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools idxstats on new BAM"
     samtools idxstats "${sample_name}.samtools.bam" > idxstats.new.txt
 
-    echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools flagstat on old bam"
+    echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools flagstat on old BAM"
     samtools flagstat old_bam_file.bam > flagstat.old.txt
-    echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools flagstat on new bam"
+    echo "$(date "+%Y-%m-%d %H:%M:%S") Starting samtools flagstat on new BAM"
     samtools flagstat "${sample_name}.samtools.bam" > flagstat.new.txt
 
-    # Verifying the old and new BAMs produce the same flagstats
+    echo "$(date "+%Y-%m-%d %H:%M:%S") Verifying the old and new BAMs produce the same flagstats"
     if ! diff flagstat.old.txt flagstat.new.txt; then
       1>&2 echo "BAM flagstats differ!"
       exit 1
