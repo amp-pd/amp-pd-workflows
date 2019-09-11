@@ -1,0 +1,25 @@
+{
+  "##_COMMENT1": "Path to the intervals file",
+  "GatherVcfsCloud.intervals_file": "__INSERT_GCS_PATH_TO_INTERVALS_FILE__",
+
+  "##_COMMENT2": "Set which chromosomes to gather, and which shards to ignore.",
+  "GatherVcfsCloud.chromosomes": ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","X","Y"],
+  "GatherVcfsCloud.shards_to_ignore": [],
+
+  "##_COMMENT3": "Set values for the input vcf files",
+  "GatherVcfsCloud.input_directory": "__INSERT_GCS_PATH_TO_VCF_DIRECTORY__",
+  "GatherVcfsCloud.input_file_prefix": "__INSERT_VCF_FILE_PREFIX__",
+  "GatherVcfsCloud.input_file_suffix": "__INSERT_VCF_FILE_SUFFIX__",
+
+  "##_COMMENT4": "Path to a Docker image containing gatk",
+  "GatherVcfsCloud.docker_image": "broadinstitute/gatk:4.1.2.0",
+
+  "##_COMMENT5": "Disk size for processing chromosome 1; disks for other chromosomes will be computed from this.",
+  "GatherVcfsCloud.disk_size_gb_chr_1": 1500,  
+  "GatherVcfsCloud.vm_memory": "3.75GB",  
+  "GatherVcfsCloud.num_cpu_cores": 1,
+  "GatherVcfsCloud.runtime_zones": "us-central1-a us-central1-b",
+
+  "##_COMMENT6": "A run on ~4000 samples was observed to have larger chromosomes take ~35 hours, so we don't use preemptible.",
+  "GatherVcfsCloud.preemptible_tries": 0
+}
