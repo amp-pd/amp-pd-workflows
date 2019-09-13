@@ -20,6 +20,17 @@ A sample inputs.json file is included here with values derived from running work
 The mapping file is a tsv with three columns: sample_id, fastq_1, and fastq_2. Each row represents a pair of fastqs in GCS for a sample. A single sample may have multiple pairs of fastq files. As an example:
 ```
 sample_id fastq_1 fastq_2
-SAMPLE_ID_1 gs://bucket/SAMPLE_ID_1.R1.fastq.gz gs://bucket/SAMPLE_ID_1.R2.fastq.gz
+SAMPLE_ID_1 gs://bucket/SAMPLE_ID_1.L1.R1.fastq.gz gs://bucket/SAMPLE_ID_1.L1.R2.fastq.gz
 SAMPLE_ID_1 gs://bucket/SAMPLE_ID_1.L2.R1.fastq.gz gs://bucket/SAMPLE_ID_1.L2.R2.fastq.gz
+SAMPLE_ID_1 gs://bucket/SAMPLE_ID_1.L3.R1.fastq.gz gs://bucket/SAMPLE_ID_1.L3.R2.fastq.gz
+SAMPLE_ID_2 gs://bucket/SAMPLE_ID_2.L1.R1.fastq.gz gs://bucket/SAMPLE_ID_2.L1.R2.fastq.gz
+SAMPLE_ID_2 gs://bucket/SAMPLE_ID_2.L2.R1.fastq.gz gs://bucket/SAMPLE_ID_2.L2.R2.fastq.gz
+SAMPLE_ID_3 gs://bucket/SAMPLE_ID_3.R1.fastq.gz gs://bucket/SAMPLE_ID_3.R2.fastq.gz
 ```
+
+For the above example, the resulting `samples` table would then look like:
+```
+sample_id fastq_1 fastq_2
+SAMPLE_ID_1 ["gs://bucket/SAMPLE_ID_1.L1.R1.fastq.gz", "gs://bucket/SAMPLE_ID_1.L2.R1.fastq.gz", "gs://bucket/SAMPLE_ID_1.L3.R1.fastq.gz"] ["gs://bucket/SAMPLE_ID_1.L1.R2.fastq.gz", "gs://bucket/SAMPLE_ID_1.L2.R2.fastq.gz", "gs://bucket/SAMPLE_ID_1.L3.R2.fastq.gz"]
+SAMPLE_ID_2 ["gs://bucket/SAMPLE_ID_2.L1.R1.fastq.gz", "gs://bucket/SAMPLE_ID_2.L2.R1.fastq.gz"] ["gs://bucket/SAMPLE_ID_2.L1.R2.fastq.gz", "gs://bucket/SAMPLE_ID_2.L2.R2.fastq.gz"]
+SAMPLE_ID_3 ["gs://bucket/SAMPLE_ID_3.R1.fastq.gz"] ["gs://bucket/SAMPLE_ID_3.R2.fastq.gz"]
