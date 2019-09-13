@@ -1,16 +1,16 @@
 {
   "##_COMMENT1": "Set your per-sample values: name and BAM path",
-  "RNAIndex.sample_name": "__INSERT_SAMPLE_NAME__",
-  "RNAIndex.input_bam_file":"__INSERT_GCS_PATH_TO_BAM_FILE__",
+  "RNABAMSortAndIndex.sample_name": "__INSERT_SAMPLE_NAME__",
+  "RNABAMSortAndIndex.input_bam_file":"__INSERT_GCS_PATH_TO_BAM_FILE__",
 
   "##_COMMENT2": "Path to a Docker image containing samtools",
-  "RNAIndex.samtools_docker":"biocontainers/samtools:v1.7.0_cv4",
+  "RNABAMSortAndIndex.samtools_docker":"biocontainers/samtools:v1.7.0_cv4",
 
   "##_COMMENT3": "Would be unusual to take more than 24 hours, so use preemptible",
-  "RNAIndex.preemptible_tries": 5,
+  "RNABAMSortAndIndex.preemptible_tries": 5,
 
-  "RNAIndex.num_cpu_cores": 1,
-  "RNAIndex.vm_disk_size_gb": 200,
-  "RNAIndex.vm_memory":"3.75GB",
-  "RNAIndex.runtime_zones":"us-central1-a us-central1-b"
+  "RNABAMSortAndIndex.num_cpu_cores": 1,
+  "RNABAMSortAndIndex.vm_disk_size_gb": 200,
+  "RNABAMSortAndIndex.vm_memory":"3.75GB",
+  "RNABAMSortAndIndex.runtime_zones":"us-central1-a us-central1-b"
 }
