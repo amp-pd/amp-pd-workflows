@@ -158,6 +158,10 @@ task star_align {
       --outSAMstrandField intronMotif \
       --outSAMunmapped Within \
       --outSAMattrRGline $RGTAGLIST
+
+    # Move the resulting BAM to its own directory
+    mkdir output_dir/BAM
+    mv *.bam output_dir/BAM
   >>>
 
   runtime {
@@ -178,6 +182,7 @@ task star_align {
     #   - <sample-id>.Log.final.out
     #   - <sample-id>.Log.out
     #   - <sample-id>.Log.progress.out
+    File bamFile = "output_dir/BAM/${sample_name}.Aligned.out.bam"
     Array[File] outputFiles = glob("output_dir/*")
 
     # 2 outputs produced:
