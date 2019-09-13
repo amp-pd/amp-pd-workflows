@@ -1,6 +1,6 @@
 # WGSGatherVcfs with GATK
 
-This workflow runs `gatk GatherVcfsCloud` on a GCS directory containing VCF files. [GatherVcfsCloud]((https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.5.1/org_broadinstitute_hellbender_tools_GatherVcfsCloud.php)).
+This workflow runs `gatk GatherVcfsCloud` on a GCS directory containing VCF files. [GatherVcfsCloud](https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.5.1/org_broadinstitute_hellbender_tools_GatherVcfsCloud.php).
 
 Inputs:
 - intervals_file: GCS path of intervals file

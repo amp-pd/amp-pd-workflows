@@ -15,11 +15,12 @@
   "##_COMMENT4": "Path to a Docker image containing gatk",
   "GatherVcfsCloud.docker_image": "broadinstitute/gatk:4.1.2.0",
 
+  "##_COMMENT5": "Disk size for processing chromosome 1; disks for other chromosomes will be computed from this.",
   "GatherVcfsCloud.disk_size_gb_chr_1": 1500,  
   "GatherVcfsCloud.vm_memory": "3.75GB",  
   "GatherVcfsCloud.num_cpu_cores": 1,
   "GatherVcfsCloud.runtime_zones": "us-central1-a us-central1-b",
 
-  "##_COMMENT5": "Gather does not *typically* take more than 24 hours, so use preemptible",
+  "##_COMMENT6": "Gather does not *typically* take more than 24 hours, so use preemptible",
   "GatherVcfsCloud.num_preemptible_retries": 3
 }
