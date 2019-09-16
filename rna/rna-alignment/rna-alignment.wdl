@@ -1,7 +1,8 @@
 ## rna-alignment.wdl
 ##
-## This workflow runs the STAR command on a pair of fastq files.
-## (https://github.com/alexdobin/STAR)
+## This workflow runs the STAR (https://github.com/alexdobin/STAR)
+## "alignReads" command on a pair of FASTQ file lists and produces an aligned,
+## unsorted BAM with STAR's default compression level (1).
 ##
 ## Inputs:
 ## - Per-sample:
@@ -28,12 +29,6 @@
 ##   - <sample-id>.Log.final.out
 ##   - <sample-id>.Log.out
 ##   - <sample-id>.Log.progress.out
-##   - <sample-id>._STARgenome
-##     - sjdbInfo.txt
-##     - sjdbList.out.tab
-##   - <sample-id>._STARpass1
-##     - Log.final.out
-##     - SJ.out.tab
 
 workflow RNAAlignment {
   String sample_name
@@ -67,8 +62,6 @@ workflow RNAAlignment {
 
   output {
     Array[File] outputFiles = star_align.outputFiles
-    Array[File] outputStarGenomeFiles = star_align.outputStarGenomeFiles
-    Array[File] outputStarpass1Files = star_align.outputStarpass1Files
   }
 }
 
@@ -184,16 +177,5 @@ task star_align {
     #   - <sample-id>.Log.progress.out
     File bamFile = "output_dir/BAM/${sample_name}.Aligned.out.bam"
     Array[File] outputFiles = glob("output_dir/*")
-
-    # 2 outputs produced:
-    #   - sjdbInfo.txt
-    #   - sjdbList.out.tab
-    Array[File] outputStarGenomeFiles = glob("output_dir/${sample_name}._STARgenome/*")
-
-    # 2 outputs produced:
-    #     - Log.final.out
-    #     - SJ.out.tab
-    Array[File] outputStarpass1Files = glob("output_dir/${sample_name}._STARpass1/*")
-
   }
 }
