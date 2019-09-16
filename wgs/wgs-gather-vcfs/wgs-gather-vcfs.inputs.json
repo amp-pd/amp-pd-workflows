@@ -2,10 +2,9 @@
   "##_COMMENT1": "Path to the intervals file",
   "GatherVcfsCloud.intervals_file": "__INSERT_GCS_PATH_TO_INTERVALS_FILE__",
 
-  "##_COMMENT2": "Set which chromosomes to gather, which shards to ignore, and an output suffix value.",
+  "##_COMMENT2": "Set which chromosomes to gather, and which shards to ignore.",
   "GatherVcfsCloud.chromosomes": ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","X","Y"],
   "GatherVcfsCloud.shards_to_ignore": [],
-  "GatherVcfsCloud.output_suffix": "_combined_from_cloud",
 
   "##_COMMENT3": "Set values for the input vcf files",
   "GatherVcfsCloud.input_directory": "__INSERT_GCS_PATH_TO_VCF_DIRECTORY__",

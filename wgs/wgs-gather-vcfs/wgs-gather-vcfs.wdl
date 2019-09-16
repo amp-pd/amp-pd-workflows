@@ -9,10 +9,11 @@
 ## The output of the workflow is 1 VCF file per chromosome requested.
 ##
 ## Inputs:
-## - intervals_file: GCS path of intervals file
+## - intervals_file: GCS path of joint genotyping workflow's output intervals file
 ## - chromosomes: An array of chromosome to gather, such as ["1", "2", "21", "22", "X", "Y"]
-## - shards_to_ignore: An array of numbers from the intervals file to ignore, ex [576, 1032]
-## - output_suffix: Output file will look like "chr22${output_suffix}.vcf"
+## - shards_to_ignore: An array of numbers from the intervals file to ignore, ex [576, 1032].
+##                     A few intervals from joint genotyping may have zero variants, which results in "empty" shards.
+##                     List these shards here to prevent GatherVcfs from raising an error.
 ## - input_directory: GCS path of directory containing sharded vcf files
 ## - input_file_prefix: Input VCF files look like "${input_file_prefix}.n.${input_file_suffix}"
 ## - input_file_suffix: Input VCF files look like "${input_file_prefix}.n.${input_file_suffix}"
@@ -37,7 +38,6 @@ workflow GatherVcfsCloud {
   File intervals_file
   Array[String] chromosomes
   Array[Int] shards_to_ignore
-  String output_suffix
   String input_directory
   String input_file_prefix
   String input_file_suffix
@@ -55,7 +55,6 @@ workflow GatherVcfsCloud {
         intervals_file = intervals_file,
         chromosome = chromosome,
         shards_to_ignore = shards_to_ignore,
-        output_suffix = output_suffix,
         input_directory = input_directory,
         input_file_prefix = input_file_prefix,
         input_file_suffix = input_file_suffix,
@@ -80,7 +79,6 @@ task gather_vcfs_cloud {
   File intervals_file
   String chromosome
   Array[Int] shards_to_ignore
-  String output_suffix
   String input_directory
   String input_file_prefix
   String input_file_suffix
@@ -128,30 +126,34 @@ task gather_vcfs_cloud {
     set -o nounset
     set -o pipefail
 
+    # Find the specified chromosome, find the start and end lines in the intervals file.
+    # The file must list chromosome intervals together.
+    # Line numbers are 1-indexed, while the intervals file is 0-indexed, so we must subtract 1.
     START=$(($(grep -n "chr${chromosome}:" "${intervals_file}"| cut -d':' -f1 | head -1) - 1))
     END=$(($(grep -n "chr${chromosome}:" "${intervals_file}"  | cut -d':' -f1 | tail -1) - 1))
 
     INPUT_PARAMETERS=""
-    for ((i=START;i<=END;i++)); do
-        for IGNORED_NUMBER in ${sep=' ' shards_to_ignore}; do
+    for ((i=START; i<=END; i++)); do
+      for IGNORED_NUMBER in ${sep=' ' shards_to_ignore}; do
         if [[ $i == $IGNORED_NUMBER ]]; then
           # Continue to the outer for loop
           continue 2
         fi
       done
+      # Build up a list of "-I" (input) file flags to pass to GatherVcfsCloud.
       INPUT_PARAMETERS+=" -I ${input_directory}/${input_file_prefix}.$i.${input_file_suffix}"
     done
 
-    COMMAND="gatk GatherVcfsCloud$INPUT_PARAMETERS -O chr${chromosome}${output_suffix}.vcf"
+    COMMAND="gatk GatherVcfsCloud$INPUT_PARAMETERS -O chr${chromosome}.vcf"
 
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting gatk GatherVcfsCloud"
     $COMMAND
 
     echo "$(date "+%Y-%m-%d %H:%M:%S") Compressing combined vcf"
-    bgzip -c "chr${chromosome}${output_suffix}.vcf" > "chr${chromosome}${output_suffix}.vcf.gz"
+    bgzip -c "chr${chromosome}.vcf" > "chr${chromosome}.vcf.gz"
 
     echo "$(date "+%Y-%m-%d %H:%M:%S") Creating tbi file"
-    tabix -p vcf "chr${chromosome}${output_suffix}.vcf.gz"
+    tabix -p vcf "chr${chromosome}.vcf.gz"
   }
   runtime {
     docker: docker_image
@@ -162,8 +164,8 @@ task gather_vcfs_cloud {
     cpu: num_cpu_cores
   }
   output {
-    File combined_vcf = "chr${chromosome}${output_suffix}.vcf.gz"
-    File combined_vcf_idx = "chr${chromosome}${output_suffix}.vcf.idx"
-    File combined_vcf_tbi = "chr${chromosome}${output_suffix}.vcf.gz.tbi"
+    File combined_vcf = "chr${chromosome}.vcf.gz"
+    File combined_vcf_idx = "chr${chromosome}.vcf.idx"
+    File combined_vcf_tbi = "chr${chromosome}.vcf.gz.tbi"
   }
 }

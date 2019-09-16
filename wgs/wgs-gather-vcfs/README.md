@@ -1,12 +1,17 @@
 # WGSGatherVcfs with GATK
 
-This workflow runs `gatk GatherVcfsCloud` on a GCS directory containing VCF files. [GatherVcfsCloud](https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.5.1/org_broadinstitute_hellbender_tools_GatherVcfsCloud.php).
+This workflow runs the GATK's `GatherVcfsCloud` on a GCS directory containing sharded VCF files from a joint genotyping workflow such as the one here: https://github.com/gatk-workflows/gatk4-germline-snps-indels.
+
+Each VCF file corresponds to an interval from the joint genotyping intervals file. That file is a required input to this workflow.
+
+The output of the workflow is 1 VCF file per chromosome requested.
 
 Inputs:
 - intervals_file: GCS path of intervals file
 - chromosomes: An array of chromosome string values, ["1", "2", "21", "22", "X", "Y"]
-- shards_to_ignore: An array of numbers from the intervals file to ignore
-- output_suffix: Output file will look like "chr22${output_suffix}.vcf"
+- shards_to_ignore: An array of numbers from the intervals file to ignore.
+                    A few intervals from joint genotyping may have zero variants, which results in "empty" shards.
+                    List these shards here to prevent GatherVcfs from raising an error.
 - input_directory: GCS path of directory containing sharded vcf files
 - input_file_prefix: Input VCF files look like "${input_file_prefix}.n.${input_file_suffix}"
 - input_file_suffix: Input VCF files look like "${input_file_prefix}.n.${input_file_suffix}"
