@@ -47,7 +47,7 @@ workflow GatherVcfsCloud {
   String vm_memory
   Int num_cpu_cores
   String runtime_zones
-  Int num_preemptible_retries
+  Int preemptible_tries
 
   scatter (chromosome in chromosomes) {
     call gather_vcfs_cloud {
@@ -64,7 +64,7 @@ workflow GatherVcfsCloud {
         vm_memory = vm_memory,
         num_cpu_cores = num_cpu_cores,
         runtime_zones = runtime_zones,
-        num_preemptible_retries = num_preemptible_retries,
+        preemptible_tries = preemptible_tries,
     }
   }
 
@@ -88,7 +88,7 @@ task gather_vcfs_cloud {
   String vm_memory
   Int num_cpu_cores
   String runtime_zones
-  Int num_preemptible_retries
+  Int preemptible_tries
 
   # This map gives an estimation of how much disk space we need per chromosome
   # Source: http://www.cshlp.org/ghg5_all/section/dna.shtml
@@ -159,7 +159,7 @@ task gather_vcfs_cloud {
     docker: docker_image
     disks: "local-disk " + vm_disk_size + " HDD"
     zones: runtime_zones
-    preemptible: num_preemptible_retries
+    preemptible: preemptible_tries
     memory: vm_memory
     cpu: num_cpu_cores
   }

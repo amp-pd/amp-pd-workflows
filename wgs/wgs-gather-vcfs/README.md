@@ -36,6 +36,6 @@ A sample inputs.json file is included here with values derived from running work
 
 A run on ~4000 samples was observed to have larger chromosomes take ~35 hours, so by default the workflow will run on non-preemptible machines.
 
-To enable preemptible machines for smaller sample sets, set `GatherVcfsCloud.num_preemptible_retries` to the number of preemptible retry attempts desired.
+To enable preemptible machines for smaller sample sets, set `GatherVcfsCloud.preemptible_tries` to the number of preemptible retry attempts desired.
 
 The `gatk` Docker image used was from [broadinstitute](https://hub.docker.com/u/broadinstitute/).

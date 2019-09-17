@@ -21,5 +21,5 @@
   "GatherVcfsCloud.runtime_zones": "us-central1-a us-central1-b",
 
   "##_COMMENT6": "A run on ~4000 samples was observed to have larger chromosomes take ~35 hours, so we don't use preemptible.",
-  "GatherVcfsCloud.num_preemptible_retries": 0
+  "GatherVcfsCloud.preemptible_tries": 0
 }
