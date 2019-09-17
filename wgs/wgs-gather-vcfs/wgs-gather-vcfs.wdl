@@ -12,7 +12,7 @@
 ## - intervals_file: GCS path of joint genotyping workflow's output intervals file
 ## - chromosomes: An array of chromosome to gather, such as ["1", "2", "21", "22", "X", "Y"]
 ## - shards_to_ignore: An array of numbers from the intervals file to ignore, ex [576, 1032].
-##                     A few intervals from joint genotyping may have zero variants, which results in "empty" shards.
+##                     Some intervals from joint genotyping may have zero variants called.
 ##                     List these shards here to prevent GatherVcfs from raising an error.
 ## - input_directory: GCS path of directory containing sharded vcf files
 ## - input_file_prefix: Input VCF files look like "${input_file_prefix}.n.${input_file_suffix}"
