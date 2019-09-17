@@ -12,12 +12,12 @@ Inputs:
 
 Outputs:
 - Per-sample
-  - Array[String] of fastq files
+  - Array[String] of FASTQ files
 
 ## Notes
 A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra](https://app.terra.bio/).
 
-The mapping file is a tsv with three columns: sample_id, fastq_1, and fastq_2. Each row represents a pair of fastqs in GCS for a sample. A single sample may have multiple pairs of fastq files. As an example:
+The mapping file is a tsv with three columns: sample_id, fastq_1, and fastq_2. Each row represents a pair of FASTQ files in GCS for a sample. A single sample may have multiple pairs of FASTQ files. As an example:
 ```
 sample_id fastq_1 fastq_2
 SAMPLE_ID_1 gs://bucket/SAMPLE_ID_1.L1.R1.fastq.gz gs://bucket/SAMPLE_ID_1.L1.R2.fastq.gz

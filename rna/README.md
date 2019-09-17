@@ -8,35 +8,64 @@ Terra can update the `sample` data table (also known as `sample` "entities") wit
 
 Thus if you set each workflow to run from the `sample` entity and set the `outputs` to update the `sample` entity, you can run a progression of workflows such as:
 
-1- Run `update-samples-entity` workflow. The `samples` table would then contain, for each sample:
+1- Upload a list of samples. The file to upload could be as simple as a 1-column CSV file:
+```
+entity:sample_id
+SAMPLE_ID_1
+SAMPLE_ID_2
+SAMPLE_ID_3
+```
+Then within the Data tab, click on the small “+” (to the right of the “Tables” header in the left column) and follow the prompts. The `samples` table would then contain, for each sample:
+
+- sample_id (STRING)
+
+2- Run `update-samples-entity` workflow. The `samples` table would then contain, for each sample:
+
+- sample_id (STRING)
+- fastq_1 (Array of STRINGs: paths to FASTQ files in GCS)
+- fastq_2 (Array of STRINGs: paths to FASTQ files in GCS)
+
+3- Run the `rna-quantification` (Salmon) workflow. The samples entity would then contain:
 
 - sample_id (STRING)
 - fastq_1 (Array of STRINGs: paths to fastq files in GCS)
 - fastq_2 (Array of STRINGs: paths to fastq files in GCS)
+- salmon_quant_sf (STRING: path to Salmon output quant.sf file in GCS)
+- salmon_quant_genes_sf (STRING: path to Salmon output quant.genes.sf file in GCS)
+- [other Salmon output files]
 
-2- Run the `rna-alignment` (STAR) workflow. The samples entity would then contain:
+4- Run the `rna-alignment` (STAR) workflow. The samples entity would then contain:
 
 - sample_id (STRING)
-- fastq_1 (Array of STRINGs: paths to fastq files in GCS)
-- fastq_2 (Array of STRINGs: paths to fastq files in GCS)
+- fastq_1 (Array of STRINGs: paths to FASTQ files in GCS)
+- fastq_2 (Array of STRINGs: paths to FASTQ files in GCS)
+- salmon_quant_sf (STRING: path to Salmon output quant.sf file in GCS)
+- salmon_quant_genes_sf (STRING: path to Salmon output quant.genes.sf file in GCS)
+- [other Salmon output files]
 - STAR_bam (STRING: path to STAR output BAM in GCS)
 - [other STAR output files]
 
-3- Run the `rna-bam-sort-and-index` (samtools) workflow. The `samples` entity would then contain:
+5- Run the `rna-bam-sort-and-index` (samtools) workflow. The `samples` entity would then contain:
 
 - sample_id (STRING)
-- fastq_1 (Array of STRINGs: paths to fastq files in GCS)
-- fastq_2 (Array of STRINGs: paths to fastq files in GCS)
+- fastq_1 (Array of STRINGs: paths to FASTQ files in GCS)
+- fastq_2 (Array of STRINGs: paths to FASTQ files in GCS)
+- salmon_quant_sf (STRING: path to Salmon output quant.sf file in GCS)
+- salmon_quant_genes_sf (STRING: path to Salmon output quant.genes.sf file in GCS)
+- [other Salmon output files]
 - STAR_bam (STRING: path to STAR [unsorted] output BAM in GCS)
 - [other STAR output files]
 - samtools_bam (STRING: path to samtools [sorted] output BAM in GCS)
 - [other samtools output files]
 
-4- Run the `rna-summarization` (featureCounts) workflow. The samples entity would then contain:
+6- Run the `rna-summarization` (featureCounts) workflow. The samples entity would then contain:
 
 - sample_id (STRING)
-- fastq_1 (Array of STRINGs: paths to fastq files in GCS)
-- fastq_2 (Array of STRINGs: paths to fastq files in GCS)
+- fastq_1 (Array of STRINGs: paths to FASTQ files in GCS)
+- fastq_2 (Array of STRINGs: paths to FASTQ files in GCS)
+- salmon_quant_sf (STRING: path to Salmon output quant.sf file in GCS)
+- salmon_quant_genes_sf (STRING: path to Salmon output quant.genes.sf file in GCS)
+- [other Salmon output files]
 - STAR_bam (STRING: path to STAR [unsorted] output BAM in GCS)
 - [other STAR output files]
 - samtools_bam (STRING: path to samtools [sorted] output BAM in GCS)
