@@ -36,7 +36,7 @@ workflow RNASummarization {
   String featureCounts_vm_memory
   Int num_cpu_cores
   String runtime_zones
-  Int num_preemptible_retries
+  Int preemptible_tries
 
   call subread_featureCounts {
     input:
@@ -49,7 +49,7 @@ workflow RNASummarization {
       featureCounts_vm_disk_size_gb = featureCounts_vm_disk_size_gb,
       num_cpu_cores = num_cpu_cores,
       runtime_zones = runtime_zones,
-      num_preemptible_retries = num_preemptible_retries,
+      preemptible_tries = preemptible_tries,
       featureCounts_vm_memory = featureCounts_vm_memory
    }
 
@@ -68,7 +68,7 @@ task subread_featureCounts {
   Int featureCounts_vm_disk_size_gb
   Int num_cpu_cores
   String runtime_zones
-  Int num_preemptible_retries
+  Int preemptible_tries
   String featureCounts_vm_memory
 
   command {
@@ -102,7 +102,7 @@ task subread_featureCounts {
 
     disks: "local-disk " + featureCounts_vm_disk_size_gb + " HDD"
     zones: runtime_zones
-    preemptible: num_preemptible_retries
+    preemptible: preemptible_tries
     memory: featureCounts_vm_memory
     cpu: num_cpu_cores
   }
