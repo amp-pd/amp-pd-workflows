@@ -8,14 +8,14 @@ Terra can update the `sample` data table (also known as `sample` "entities") wit
 
 Thus if you set each workflow to run from the `sample` entity and set the `outputs` to update the `sample` entity, you can run a progression of workflows such as:
 
-1- Upload a list of samples. The file to upload could be as simple as a 1-column CSV file:
+1- Upload a list of samples following instructions from the help article above. The file to upload could be as simple as a 1-column CSV file:
 ```
 entity:sample_id
 SAMPLE_ID_1
 SAMPLE_ID_2
 SAMPLE_ID_3
 ```
-Then within the Data tab, click on the small “+” (to the right of the “Tables” header in the left column) and follow the prompts. The `samples` table would then contain, for each sample:
+The `samples` table would then contain, for each sample:
 
 - sample_id (STRING)
 
