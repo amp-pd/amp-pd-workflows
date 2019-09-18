@@ -16,6 +16,7 @@ Inputs:
 - input_directory: GCS path of directory containing sharded vcf files
 - input_file_prefix: Input VCF files look like "${input_file_prefix}.n.${input_file_suffix}"
 - input_file_suffix: Input VCF files look like "${input_file_prefix}.n.${input_file_suffix}"
+
 - VM configuration
   - Docker image url
   - VM disk size needed for chromosome 1
