@@ -61,6 +61,7 @@ workflow RNAAlignment {
    }
 
   output {
+    File bamFile = star_align.bamFile
     Array[File] outputFiles = star_align.outputFiles
   }
 }
