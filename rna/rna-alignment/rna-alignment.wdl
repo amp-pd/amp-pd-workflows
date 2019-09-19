@@ -155,7 +155,7 @@ task star_align {
 
     # Move the resulting BAM to its own directory
     mkdir output_dir/BAM
-    mv *.bam output_dir/BAM
+    mv output_dir/*.bam output_dir/BAM
   >>>
 
   runtime {
