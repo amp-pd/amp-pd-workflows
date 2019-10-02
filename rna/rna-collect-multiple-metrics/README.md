@@ -1,6 +1,6 @@
 # RNACollectMultipleMetrics with Picard
 
-This workflow runs `picard CollectInsertSizeMetrics`, `picardCollectAlignmentSummaryMetrics`, `picard QualityScoreDistribution`, and `picard MeanQualityByCycle` on a BAM file
+This workflow runs `picard CollectInsertSizeMetrics`, `picard CollectAlignmentSummaryMetrics`, `picard QualityScoreDistribution`, and `picard MeanQualityByCycle` on a BAM file
 (https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.1.2/picard_analysis_CollectInsertSizeMetrics.php).
 
 Inputs:
