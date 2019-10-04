@@ -54,7 +54,8 @@ workflow RNASummarization {
    }
 
   output {
-    Array[File] outputFiles = subread_featureCounts.outputFiles
+    File output_tsv_file = subread_featureCounts.output_tsv_file
+    File summary_file = subread_featureCounts.summary_file
   }
 }
 
@@ -110,6 +111,7 @@ task subread_featureCounts {
     # Two outputs produced:
     # - <sample_name}.featureCounts.tsv
     # - <sample_name>.featureCounts.tsv.summary
-    Array[File] outputFiles = glob("*")
+    File output_tsv_file = "${sample_name}.featureCounts.tsv"
+    File summary_file = "${sample_name}.featureCounts.tsv.summary"
   }
 }
