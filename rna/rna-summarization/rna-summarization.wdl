@@ -109,7 +109,7 @@ task subread_featureCounts {
   }
   output {
     # Two outputs produced:
-    # - <sample_name}.featureCounts.tsv
+    # - <sample_name>.featureCounts.tsv
     # - <sample_name>.featureCounts.tsv.summary
     File output_tsv_file = "${sample_name}.featureCounts.tsv"
     File summary_file = "${sample_name}.featureCounts.tsv.summary"
