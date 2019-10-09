@@ -4,7 +4,7 @@ This workflow reads a "mapping file" from Cloud Storage
 and writes Array["gs://..."] to the samples entity
 
 Inputs:
-- Mapping (tsv) file.
+- Mapping (tsv) file in GCS.
 - Sample ID
 - Runtime zones, ex: "us-central1-a us-central1-b"
 - Number of times to try the workflow with a preemptible VM before
@@ -27,6 +27,8 @@ SAMPLE_ID_2 gs://bucket/SAMPLE_ID_2.L1.R1.fastq.gz gs://bucket/SAMPLE_ID_2.L1.R2
 SAMPLE_ID_2 gs://bucket/SAMPLE_ID_2.L2.R1.fastq.gz gs://bucket/SAMPLE_ID_2.L2.R2.fastq.gz
 SAMPLE_ID_3 gs://bucket/SAMPLE_ID_3.R1.fastq.gz gs://bucket/SAMPLE_ID_3.R2.fastq.gz
 ```
+
+This mapping file needs to be stored in GCS. The GCS path of this mapping file will be used as input for the workflow.
 
 For the above example, the resulting `samples` table would then look like:
 ```
