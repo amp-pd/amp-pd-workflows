@@ -34,6 +34,7 @@ Outputs:
 
 ## Notes
 A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra](https://app.terra.bio/).
+A terra.inputs.json and a terra.outputs.json file that you can directly upload to Terra is also included here.
 
 By default, the workflow will run on preemptible machines, but will hard-terminate the STAR command at 23.5
 hours. This is to avoid getting preempted at 24 hours and then re-running on a preemptible VM, which again
