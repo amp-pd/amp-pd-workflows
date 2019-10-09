@@ -1,0 +1,11 @@
+{
+  "RNASummarization.featureCounts_vm_memory": "7.5GB",
+  "RNASummarization.num_cpu_cores": "${2}",
+  "RNASummarization.runtime_zones": "us-central1-a us-central1-b",
+  "RNASummarization.preemptible_tries": "${5}",
+  "RNASummarization.featureCounts_vm_disk_size_gb": "${1000}",
+  "RNASummarization.sample_name": "${this.sample_id}",
+  "RNASummarization.bam_file": "${this.samtools_bam}",
+  "RNASummarization.featureCounts_docker": "quay.io/biocontainers/subread:1.6.3--h84994c4_1",
+  "RNASummarization.gene_map": "gs://amp-pd-transcriptomics/inputs/reference/gencode/gencode.v29.primary_assembly.annotation.gtf.gz"
+}

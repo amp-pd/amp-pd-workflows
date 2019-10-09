@@ -1,0 +1,12 @@
+{
+  "RNAAlignment.star_index": "gs://amp-pd-transcriptomics/inputs/reference/star/STAR_genome_GencodeV29_oh125.tar.gz",
+  "RNAAlignment.star_vm_disk_size_gb": "${200}",
+  "RNAAlignment.fastq_1": "${this.fastq1}",
+  "RNAAlignment.preemptible_tries": "${0}",
+  "RNAAlignment.fastq_2": "${this.fastq2}",
+  "RNAAlignment.sample_name": "${this.sample_id}",
+  "RNAAlignment.star_timeout_hours": "${23.5}",
+  "RNAAlignment.star_docker": "alexdobin/star:2.6.1d",
+  "RNAAlignment.star_vm_memory": "80.0GB",
+  "RNAAlignment.runtime_zones": "us-central1-a us-central1-b"
+}

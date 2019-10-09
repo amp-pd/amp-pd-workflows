@@ -1,0 +1,10 @@
+{
+  "RNABAMSortAndIndex.vm_memory": "3.75GB",
+  "RNABAMSortAndIndex.num_cpu_cores": "${1}",
+  "RNABAMSortAndIndex.input_bam_file": "${this.star_bam_file}",
+  "RNABAMSortAndIndex.runtime_zones": "us-central1-a us-central1-b",
+  "RNABAMSortAndIndex.vm_disk_size_gb": "${200}",
+  "RNABAMSortAndIndex.samtools_docker": "biocontainers/samtools:v1.7.0_cv4",
+  "RNABAMSortAndIndex.preemptible_tries": "${5}",
+  "RNABAMSortAndIndex.sample_name": "${this.sample_id}"
+}

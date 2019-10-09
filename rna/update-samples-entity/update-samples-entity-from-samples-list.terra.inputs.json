@@ -1,0 +1,6 @@
+{
+  "SampleToPairedFastq.mapping_file": "${}",
+  "SampleToPairedFastq.preemptible_tries": "${3}",
+  "SampleToPairedFastq.runtime_zones": "us-central1-a us-central1-b",
+  "SampleToPairedFastq.sample_id": "${this.sample_id}"
+}

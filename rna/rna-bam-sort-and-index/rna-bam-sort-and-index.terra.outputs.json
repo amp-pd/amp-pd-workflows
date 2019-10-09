@@ -1,0 +1,6 @@
+{
+  "RNABAMSortAndIndex.samtools_bai_output_path": "${this.samtools_bai}",
+  "RNABAMSortAndIndex.samtools_bam_output_path": "${this.samtools_bam}",
+  "RNABAMSortAndIndex.samtools_flagstat_output_path": "${this.samtools_flagstat}",
+  "RNABAMSortAndIndex.samtools_idxstats_output_path": "${this.samtools_idxstats}"
+}

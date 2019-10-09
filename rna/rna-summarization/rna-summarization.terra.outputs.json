@@ -1,0 +1,4 @@
+{
+  "RNASummarization.output_tsv_file": "${this.featureCounts_output_tsv_file}",
+  "RNASummarization.summary_file": "${this.featureCounts_output_summary_file}"
+}
