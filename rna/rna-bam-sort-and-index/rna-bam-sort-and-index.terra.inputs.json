@@ -1,10 +1,16 @@
 {
-  "RNABAMSortAndIndex.vm_memory": "3.75GB",
-  "RNABAMSortAndIndex.num_cpu_cores": "${1}",
+  "##_COMMENT1": "Set your per-sample values: name and BAM path",
+  "RNABAMSortAndIndex.sample_name": "${this.sample_id}",
   "RNABAMSortAndIndex.input_bam_file": "${this.star_bam_file}",
-  "RNABAMSortAndIndex.runtime_zones": "us-central1-a us-central1-b",
-  "RNABAMSortAndIndex.vm_disk_size_gb": "${200}",
+
+  "##_COMMENT2": "Path to a Docker image containing samtools",
   "RNABAMSortAndIndex.samtools_docker": "biocontainers/samtools:v1.7.0_cv4",
+
+  "##_COMMENT3": "Would be unusual to take more than 24 hours, so use preemptible",
   "RNABAMSortAndIndex.preemptible_tries": "${5}",
-  "RNABAMSortAndIndex.sample_name": "${this.sample_id}"
+
+  "RNABAMSortAndIndex.num_cpu_cores": "${1}",
+  "RNABAMSortAndIndex.vm_disk_size_gb": "${200}",
+  "RNABAMSortAndIndex.vm_memory": "3.75GB",
+  "RNABAMSortAndIndex.runtime_zones": "us-central1-a us-central1-b"
 }
