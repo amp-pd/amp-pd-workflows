@@ -2,7 +2,7 @@
   "##_COMMENT1": "Set your per-sample ID",
   "SampleToPairedFastq.sample_id": "${this.sample_id}",
 
-  "##_COMMENT2": "Path to the mapping tsv file",
+  "##_COMMENT2": "GCS path to the mapping tsv file",
   "SampleToPairedFastq.mapping_file": "${}",
 
   "##_COMMENT3": "Would be unusual to take more than 24 hours, so use preemptible",

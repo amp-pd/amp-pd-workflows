@@ -15,6 +15,6 @@
   "RNAAlignment.star_vm_disk_size_gb": "${200}",
 
   "##_COMMENT4": "STAR does not *typically* take more than 24 hours, so use preemptible",
-  "RNAAlignment.preemptible_tries": "${0}",
+  "RNAAlignment.preemptible_tries": "${3}",
   "RNAAlignment.star_timeout_hours": "${23.5}"
 }
