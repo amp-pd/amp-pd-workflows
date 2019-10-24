@@ -4,8 +4,8 @@
   "RNACollectRnaSeqMetrics.bam_file": "__INSERT_GCS_PATH_TO_BAM_FILE__",
 
   "##_COMMENT2": "Path to ref_flat and intervals file.",
-  "RNACollectRnaSeqMetrics.ref_flat_file": "__INSERT_GCS_PATH_TO_REF_FLAT_FILE__",
-  "RNACollectRnaSeqMetrics.ribosomal_intervals_file": "__INSERT_GCS_PATH_TO_INTERVALS_FILE__",
+  "RNACollectRnaSeqMetrics.ref_flat_file": "gs://amp-pd-transcriptomics/inputs/reference/picard/gencode.v29.primary_assembly.annotation.Reflat_Picard.txt",
+  "RNACollectRnaSeqMetrics.ribosomal_intervals_file": "gs://amp-pd-transcriptomics/inputs/reference/picard/gencode.v29.primary_assembly.annotation.RibosomalLocations.txt",
 
   "##_COMMENT3": "Path to a Docker image containing picard.",
   "RNACollectRnaSeqMetrics.picard_docker": "broadinstitute/picard",

@@ -1,7 +1,6 @@
 # RNACollectRnaSeqMetrics with Picard
 
-This workflow runs `picard CollectRnaSeqMetrics` on a BAM file
-(https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.0.0/picard_analysis_CollectRnaSeqMetrics.php).
+This workflow runs [picard CollectRnaSeqMetrics](https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.0.0/picard_analysis_CollectRnaSeqMetrics.php) on a BAM file.
 
 Inputs:
 - Per-sample:

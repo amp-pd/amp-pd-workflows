@@ -37,14 +37,14 @@ workflow RNACollectRnaSeqMetrics {
   Int num_cpu_cores
   String runtime_zones
   Int preemptible_tries
-  
+
   call collect_rna_seq_metrics {
     input:
       sample_name=sample_name,
       bam_file=bam_file,
       ref_flat_file=ref_flat_file,
-  	  ribosomal_intervals_file=ribosomal_intervals_file,
-      
+      ribosomal_intervals_file=ribosomal_intervals_file,
+
       picard_docker=picard_docker,
 
       vm_disk_size_gb=vm_disk_size_gb,
@@ -63,9 +63,10 @@ task collect_rna_seq_metrics {
 
   String sample_name
   File bam_file
+
   File ref_flat_file
   File ribosomal_intervals_file
-  
+
   String picard_docker
 
   Int vm_disk_size_gb
@@ -73,7 +74,7 @@ task collect_rna_seq_metrics {
   Int num_cpu_cores
   String runtime_zones
   Int preemptible_tries
-  
+
   command<<<
     set -o errexit
     set -o nounset
