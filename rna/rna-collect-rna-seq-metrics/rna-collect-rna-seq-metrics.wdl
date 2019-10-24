@@ -27,6 +27,7 @@ workflow RNACollectRnaSeqMetrics {
 
   String sample_name
   File bam_file
+
   File ref_flat_file
   File ribosomal_intervals_file
 
@@ -42,6 +43,7 @@ workflow RNACollectRnaSeqMetrics {
     input:
       sample_name=sample_name,
       bam_file=bam_file,
+
       ref_flat_file=ref_flat_file,
       ribosomal_intervals_file=ribosomal_intervals_file,
 
