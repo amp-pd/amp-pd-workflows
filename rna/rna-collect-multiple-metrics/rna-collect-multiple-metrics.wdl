@@ -24,8 +24,15 @@
 ##
 ## Outputs:
 ## - Per-sample:
-##   - File outputFiles - glob(*)
-##   - <sample-id>.Multiple_Metrics.<metric>
+##   - <sample-id>.Multiple_Metrics.alignment_summary_metrics
+##   - <sample-id>.Multiple_Metrics.base_distribution_by_cycle.pdf
+##   - <sample-id>.Multiple_Metrics.base_distribution_by_cycle_metrics
+##   - <sample-id>.Multiple_Metrics.insert_size_histogram.pdf
+##   - <sample-id>.Multiple_Metrics.insert_size_metrics
+##   - <sample-id>.Multiple_Metrics.quality_by_cycle.pdf
+##   - <sample-id>.Multiple_Metrics.quality_by_cycle_metrics
+##   - <sample-id>.Multiple_Metrics.quality_distribution.pdf
+##   - <sample-id>.Multiple_Metrics.quality_distribution_metrics
 
 
 workflow RNACollectMultipleMetrics {

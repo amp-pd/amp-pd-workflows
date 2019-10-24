@@ -4,7 +4,7 @@
   "RNACollectMultipleMetrics.bam_file": "__INSERT_GCS_PATH_TO_BAM_FILE__",
 
   "##_COMMENT2": "Path to reference FASTA file.",
-  "RNACollectMultipleMetrics.reference_sequence_file": "__INSERT_GCS_PATH_TO_REF_FASTA_FILE__",
+  "RNACollectMultipleMetrics.reference_sequence_file": "gs://amp-pd-transcriptomics/inputs/reference/gencode/GRCh38.primary_assembly.genome.fa.gz",
 
   "##_COMMENT3": "Path to a Docker image containing picard.",
   "RNACollectRnaSeqMetrics.picard_docker": "broadinstitute/picard",
