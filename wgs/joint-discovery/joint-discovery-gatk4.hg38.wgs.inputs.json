@@ -3,8 +3,8 @@
   "JointGenotyping.user_project_id": "",
 
   "##_COMMENT1": "INPUT GVCFs & COHORT -- DATASET-SPECIFC, MUST BE ADAPTED",
-  "JointGenotyping.callset_name": "",
-  "JointGenotyping.sample_name_map": "",
+  "JointGenotyping.callset_name": "__INSERT_CALLSET_NAME__",
+  "JointGenotyping.sample_name_map": "__INSERT_GCS_PATH_TO_SAMPLE_MAP__",
 
   "##_COMMENT2": "REFERENCE FILES",
   "JointGenotyping.ref_fasta": "gs://broad-references/hg38/v0/Homo_sapiens_assembly38.fasta",
