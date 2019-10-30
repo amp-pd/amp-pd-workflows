@@ -73,3 +73,21 @@ The `samples` table would then contain, for each sample:
 - featureCounts_files (Array of STRINGS: paths to featureCounts output files)
 
 All of your workflow outputs will be stored in your Terra workspace bucket and the `sample` entity table will contain the paths to the outputs.
+
+Additionally, you can run Picard tools to produce metrics on the BAM files.
+
+7- (Optional) Run the `rna-collect-rna-seq-metrics` and the `rna-collect-multiple-metrics` workflows. The samples entity would then contain:
+
+- sample_id (STRING)
+- fastq_1 (Array of STRINGs: paths to FASTQ files in GCS)
+- fastq_2 (Array of STRINGs: paths to FASTQ files in GCS)
+- salmon_quant_sf (STRING: path to Salmon output quant.sf file in GCS)
+- salmon_quant_genes_sf (STRING: path to Salmon output quant.genes.sf file in GCS)
+- [other Salmon output files]
+- STAR_bam (STRING: path to STAR [unsorted] output BAM in GCS)
+- [other STAR output files]
+- samtools_bam (STRING: path to samtools [sorted] output BAM in GCS)
+- [other samtools output files]
+- featureCounts_files (Array of STRINGS: paths to featureCounts output files)
+- rnaseq_metrics_path (STRING: path to RNA_Metrics file in GCS)
+- multiple_metrics_path (Array of STRINGS: paths to Multiple_metrics output files)
