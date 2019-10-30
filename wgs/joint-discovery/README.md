@@ -16,7 +16,7 @@ A few updates needed to be made to get it running reliably in Terra for AMP PD:
 requester pays buckets.
 
 2- Add support for maxRetries, as shards can arbitrarily fail due to
-Pipelines API Error 10
+Pipelines API Error 10.
 See https://support.terra.bio/hc/en-us/community/posts/360046714292.
 
 3- Force the number of shards to be under 10,000 such that the workflow
@@ -31,8 +31,8 @@ This is a single gating node for the next batch of sharded steps.
 Prefer not to use preemptible VMs here.
 
 5- Increase memory available for VariantRecalibrator.
-For runs of around 4,000 samples, the 3g default memory was nowhere near
-sufficient. With higher values, like 32g, this step finished reliably
+For runs of around 4,000 samples, the 3 GB default Java memory was nowhere
+near sufficient. With higher values, like 32 GB, this step finished reliably
 and much more quickly (under 4 hrs).
 
 6- Correct the path to gsutil for metrics gathering.
