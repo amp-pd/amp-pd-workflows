@@ -6,7 +6,7 @@ Metadata about samples can be stored in Terra workspace data
 which can then be used to drive workflows. When workflows complete successfully,
 Terra can update the `sample` data table (also known as `sample` "entities") with the location of their outputs.
 
-Thus if you set each workflow to run from the `sample` entity and set the `outputs` to update the `sample` entity, you can run a progression of workflows such as:
+Thus if you set each workflow to run from the `sample` entity and set the `outputs` to update the `sample` entity, you can run a progression of workflows. All of your workflow outputs will be stored in your Terra workspace bucket and the `sample` entity table will contain the paths to the outputs.
 
 1- Upload a list of samples following instructions from the help article above. The file to upload could be as simple as a 1-column CSV file:
 ```
@@ -72,11 +72,7 @@ The `samples` table would then contain, for each sample:
 - [other samtools output files]
 - featureCounts_files (Array of STRINGS: paths to featureCounts output files)
 
-All of your workflow outputs will be stored in your Terra workspace bucket and the `sample` entity table will contain the paths to the outputs.
-
-Additionally, you can run Picard tools to produce metrics on the BAM files.
-
-7- (Optional) Run the `rna-collect-rna-seq-metrics` and the `rna-collect-multiple-metrics` workflows. The samples entity would then contain:
+7- Run the `rna-collect-rna-seq-metrics` and the `rna-collect-multiple-metrics` workflows. The samples entity would then contain:
 
 - sample_id (STRING)
 - fastq_1 (Array of STRINGs: paths to FASTQ files in GCS)
@@ -90,4 +86,4 @@ Additionally, you can run Picard tools to produce metrics on the BAM files.
 - [other samtools output files]
 - featureCounts_files (Array of STRINGS: paths to featureCounts output files)
 - rnaseq_metrics_path (STRING: path to RNA_Metrics file in GCS)
-- multiple_metrics_path (Array of STRINGS: paths to Multiple_metrics output files)
+- multiple_metrics_path (Array of STRINGS: paths to Multiple_metrics output files in GCS)
