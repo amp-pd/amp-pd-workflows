@@ -1,0 +1,10 @@
+{
+  "RNAQuantification.aux_info": "${this.salmon_aux_info}",
+  "RNAQuantification.bootstraps": "${this.salmon_bootstraps}",
+  "RNAQuantification.cmd_info_json": "${this.salmon_cmd_info_json}",
+  "RNAQuantification.libParams": "${this.salmon_libParams}",
+  "RNAQuantification.lib_format_counts_json": "${this.salmon_lib_format_counts_json}",
+  "RNAQuantification.logs": "${this.salmon_logs}",
+  "RNAQuantification.quant_genes_sf": "${this.salmon_quant_genes_sf}",
+  "RNAQuantification.quant_sf": "${this.salmon_quant_sf}"
+}

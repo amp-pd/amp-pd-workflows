@@ -1,0 +1,4 @@
+{
+  "RNAAlignment.bamFile": "${this.star_bam_file}",
+  "RNAAlignment.outputFiles": "${this.star_output_files}"
+}

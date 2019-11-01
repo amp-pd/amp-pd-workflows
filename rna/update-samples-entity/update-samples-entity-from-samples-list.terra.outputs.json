@@ -1,0 +1,4 @@
+{
+  "SampleToPairedFastq.fastq1": "${this.fastq1}",
+  "SampleToPairedFastq.fastq2": "${this.fastq2}"
+}

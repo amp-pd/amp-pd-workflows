@@ -16,6 +16,7 @@ Outputs:
 
 ## Notes
 A sample inputs.json file is included here with values derived from running workflows for AMP PD on [Terra](https://app.terra.bio/).
+A terra.inputs.json and a terra.outputs.json file that you can directly upload to Terra is also included here.
 
 The mapping file is a tsv with three columns: sample_id, fastq_1, and fastq_2. Each row represents a pair of FASTQ files in GCS for a sample. A single sample may have multiple pairs of FASTQ files. As an example:
 ```
