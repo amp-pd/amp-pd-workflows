@@ -1,0 +1,21 @@
+{
+  "##_COMMENT1": "Set your per-sample values: name and BAM path, and intervals file path.",
+  "RNACollectRnaSeqMetrics.sample_name": "__INSERT_SAMPLE_NAME__",
+  "RNACollectRnaSeqMetrics.bam_file": "__INSERT_GCS_PATH_TO_BAM_FILE__",
+
+  "##_COMMENT2": "Path to ref_flat and intervals file.",
+  "RNACollectRnaSeqMetrics.ref_flat_file": "gs://amp-pd-transcriptomics/inputs/reference/picard/gencode.v29.primary_assembly.annotation.Reflat_Picard.txt",
+  "RNACollectRnaSeqMetrics.ribosomal_intervals_file": "gs://amp-pd-transcriptomics/inputs/reference/picard/gencode.v29.primary_assembly.annotation.RibosomalLocations.txt",
+
+  "##_COMMENT3": "Path to a Docker image containing picard.",
+  "RNACollectRnaSeqMetrics.picard_docker": "broadinstitute/picard",
+
+  "##_COMMENT4": "For large BAMs, you might need to allocate more resources",
+  "RNACollectRnaSeqMetrics.vm_disk_size_gb": 200,
+  "RNACollectRnaSeqMetrics.vm_memory": "6.50 GB",
+  "RNACollectRnaSeqMetrics.num_cpu_cores": 1,
+  "RNACollectRnaSeqMetrics.runtime_zones": "us-central1-a us-central1-b",
+  
+  "##_COMMENT5": "Would be unusual to take more than 24 hours, so use preemptible",
+  "RNACollectRnaSeqMetrics.preemptible_tries": 8
+}
