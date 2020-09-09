@@ -132,7 +132,7 @@ task gather_vcfs_cloud {
     readonly START=$(echo $(($(grep -n "chr${chromosome}:" "${intervals_file}"| cut -d':' -f1 | head -1) - 1)))
     readonly END=$(echo $(($(grep -n "chr${chromosome}:" "${intervals_file}"  | cut -d':' -f1 | tail -1) - 1)))
 
-    readonly INPUT_PARAMETERS=""
+    declare INPUT_PARAMETERS=""
     for ((i=START; i<=END; i++)); do
       for IGNORED_NUMBER in ${sep=' ' shards_to_ignore}; do
         if [[ $i == $IGNORED_NUMBER ]]; then
