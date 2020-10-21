@@ -129,10 +129,10 @@ task gather_vcfs_cloud {
     # Find the specified chromosome, find the start and end lines in the intervals file.
     # The file must list chromosome intervals together.
     # Line numbers are 1-indexed, while the intervals file is 0-indexed, so we must subtract 1.
-    START=$(($(grep -n "chr${chromosome}:" "${intervals_file}"| cut -d':' -f1 | head -1) - 1))
-    END=$(($(grep -n "chr${chromosome}:" "${intervals_file}"  | cut -d':' -f1 | tail -1) - 1))
+    readonly START=$(echo $(($(grep -n "chr${chromosome}:" "${intervals_file}"| cut -d':' -f1 | head -1) - 1)))
+    readonly END=$(echo $(($(grep -n "chr${chromosome}:" "${intervals_file}"  | cut -d':' -f1 | tail -1) - 1)))
 
-    INPUT_PARAMETERS=""
+    declare INPUT_PARAMETERS=""
     for ((i=START; i<=END; i++)); do
       for IGNORED_NUMBER in ${sep=' ' shards_to_ignore}; do
         if [[ $i == $IGNORED_NUMBER ]]; then
@@ -144,7 +144,7 @@ task gather_vcfs_cloud {
       INPUT_PARAMETERS+=" -I ${input_directory}/${input_file_prefix}.$i.${input_file_suffix}"
     done
 
-    COMMAND="gatk GatherVcfsCloud$INPUT_PARAMETERS -O chr${chromosome}.vcf"
+    readonly COMMAND="gatk GatherVcfsCloud$INPUT_PARAMETERS -O chr${chromosome}.vcf"
 
     echo "$(date "+%Y-%m-%d %H:%M:%S") Starting gatk GatherVcfsCloud"
     $COMMAND
