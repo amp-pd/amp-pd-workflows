@@ -1,0 +1,32 @@
+{
+  "##_Comment2": "GATK Launch Path",
+  "ConvertPairedFastQsToUnmappedBamWf.PairedFastQsToUnmappedBAM.gatk_path": "/gatk/gatk",
+  
+  "##_Comment3": "Runtime Parameters",
+  "ConvertPairedFastQsToUnmappedBamWf.PairedFastQsToUnmappedBAM.docker": "broadinstitute/gatk:4.0.1.2",
+  "ConvertPairedFastQsToUnmappedBamWf.preemptible_tries": 3
+
+  "ConvertPairedFastQsToUnmappedBamWf.readgroup_list": [
+    "__INSERT_READ_GROUPS__"
+  ], 
+  "ConvertPairedFastQsToUnmappedBamWf.metadata": {
+    "__INSERT_READ_GROUP__": [
+      "__INSERT_SAMPLE_NAME__", 
+      "__INSERT_LIBRARY_NAME__", 
+      "__INSERT_PLATFORM_UNIT__", 
+      "__INSERT_RUN_DATE__", 
+      "__INSERT_PLATFORM_NAME__", 
+      "__INSERT_SEQUENCING_CENTER__", 
+      "__INSERT_PLATFORM_MODEL__"
+    ]
+  }, 
+  "ConvertPairedFastQsToUnmappedBamWf.fastq_pairs": {
+    "__INSERT_READGROUP_NAME__": [
+      "__INSERT_GCS_PATH_TO_READ_1_FASTQ__", 
+      "__INSERT_GCS_PATH_TO_READ_2_FASTQ__"
+    ]
+  }, 
+  "ConvertPairedFastQsToUnmappedBamWf.PairedFastQsToUnmappedBAM.mem_size": "3 GB", 
+  "ConvertPairedFastQsToUnmappedBamWf.PairedFastQsToUnmappedBAM.disk_size": 600
+}
+
